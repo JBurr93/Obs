@@ -5,7 +5,6 @@
 <title>LGT Obstetric Anaesthesia – Quick Reference</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#005EB8">
 
@@ -26,6 +25,7 @@ body {
   line-height: 1.45;
 }
 
+/* HEADER */
 header {
   background: var(--nhs-blue);
   color: white;
@@ -44,6 +44,7 @@ header {
   padding: 1rem;
 }
 
+/* BUTTONS */
 .nav-button {
   width: 100%;
   background: var(--nhs-blue);
@@ -57,8 +58,8 @@ header {
   cursor: pointer;
   text-align: left;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .nav-button.secondary,
@@ -79,6 +80,7 @@ header {
   transform: rotate(45deg);
 }
 
+/* ACCORDION */
 .section {
   background: var(--card);
   border-radius: 6px;
@@ -104,6 +106,11 @@ summary {
   cursor: pointer;
 }
 
+ul ul {
+  margin-left: 1.2rem;
+}
+
+/* FOOTER */
 .footer {
   text-align: center;
   font-size: 0.8rem;
@@ -116,7 +123,19 @@ summary {
 <body>
 
 <header>
-  <img src="icon.png" alt="App logo" class="logo">
+  <!-- LOGO (no background rectangle, fixes white corners) -->
+  <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M35 15 C28 30, 28 45, 35 60 C42 75, 42 85, 35 95"
+          fill="none" stroke="white" stroke-width="6"/>
+    <g fill="white">
+      <circle cx="38" cy="25" r="4"/>
+      <circle cx="38" cy="40" r="4"/>
+      <circle cx="38" cy="55" r="4"/>
+      <circle cx="38" cy="70" r="4"/>
+    </g>
+    <line x1="80" y1="30" x2="45" y2="55" stroke="white" stroke-width="3"/>
+    <polygon points="42,56 48,52 48,58" fill="white"/>
+  </svg>
 
   <h1>LGT Obstetric Anaesthesia</h1>
   <p>Quick Reference Guide</p>
@@ -124,79 +143,103 @@ summary {
 
 <div class="container">
 
+<!-- LSCS -->
 <button class="nav-button" data-target="lscs">
   <span>LSCS</span><span class="chevron"></span>
 </button>
 <div id="lscs" class="section">
-  <!-- CONTENT UNCHANGED -->
-  <details><summary>LSCS – Regional Anaesthesia (Spinal)</summary><ul>
-    <li>14–16G IV access, warmed fluids running</li>
-    <li>2.2–2.5 ml 0.5% heavy bupivacaine + 300 mcg diamorphine</li>
-    <li>Phenylephrine infusion 50mcg/ml started at 40ml/hr</li>
-    <li>Aiming bilateral sensory block T4–S3</li>
-  </ul></details>
 
-  <details><summary>LSCS – CSE</summary><ul>
-    <li>Consider for prolonged surgery or complex medical conditions</li>
-    <li>Reduce spinal dose in cardiac disease, short stature, obesity</li>
-    <li>Phenylephrine as above</li>
-    <li>Tegaderm dressing + mefix strip</li>
-  </ul></details>
+<details>
+<summary>LSCS – Regional Anaesthesia (Spinal)</summary>
+<ul>
+<li>14–16G IV access, warmed fluids running</li>
+<li>2.2–2.5 ml 0.5% heavy bupivacaine + 300 mcg diamorphine</li>
+<li>Phenylephrine infusion 50mcg/ml started at 40ml/hr</li>
+<li>Aiming bilateral sensory block T4–S3</li>
+</ul>
+</details>
 
-  <details><summary>LSCS – Epidural Top-Up</summary><ul>
-    <li>Only if functioning adequately. If not, remove and place spinal</li>
-    <li>0.5% bupivacaine or 0.75% ropivacaine 15–20 ml in 5 ml increments</li>
-    <li>OR 2% lidocaine + adrenaline 1:200,000</li>
-    <li>Add fentanyl 50–100 mcg</li>
-    <li>Diamorphine 3 mg (or PF morphine 3 mg) at end</li>
-  </ul></details>
+<details>
+<summary>LSCS – CSE</summary>
+<ul>
+<li>Consider for prolonged surgery or complex medical conditions</li>
+<li>Reduce spinal dose in cardiac disease, short stature, obesity</li>
+<li>Phenylephrine as above</li>
+<li>Tegaderm dressing + mefix strip</li>
+</ul>
+</details>
+
+<details>
+<summary>LSCS – Epidural Top-Up</summary>
+<ul>
+<li>Only if functioning adequately. If not, remove and place spinal</li>
+<li>0.5% bupivacaine or 0.75% ropivacaine 15–20 ml in 5 ml increments</li>
+<li>OR 2% lidocaine + adrenaline 1:200,000</li>
+<li>Add fentanyl 50–100 mcg</li>
+<li>Diamorphine 3 mg (or PF morphine 3 mg) at end</li>
+</ul>
+</details>
+
+<details>
+<summary>Intra-operative pain under regional anaesthesia</summary>
+<ul>
+<li>If patient has epidural, a further top up can be given</li>
+<li>Offer GA, and convert to GA if patient accepts</li>
+<li>Rescue analgesia includes:</li>
+<ul>
+  <li>Alfentanil 200mcg increments, fentanyl 20mcg increments</li>
+  <li>Ketamine 10–20mg IV</li>
+  <li>Nitrous oxide in O₂ (50:50)</li>
+</ul>
+<li>Clearly document the events and discussions with patient</li>
+</ul>
+</details>
+
 </div>
 
-<button class="nav-button" data-target="procedures">
-  <span>Other Obstetric Procedures</span><span class="chevron"></span>
+<!-- LABOUR ANALGESIA -->
+<button class="nav-button" data-target="labour">
+  <span>Labour Analgesia</span><span class="chevron"></span>
 </button>
-<div id="procedures" class="section">
-  <details><summary>Trial of Forceps</summary><ul>
-    <li>Anaesthetic as for LSCS (block to T4)</li>
-    <li>Potential for conversion to LSCS</li>
-    <li>No prophylactic antibiotics</li>
-  </ul></details>
+<div id="labour" class="section">
 
-  <details><summary>Manual Removal of Placenta</summary><ul>
-    <li>If unstable → GA</li>
-    <li>If stable → neuraxial (T6)</li>
-    <li>Spinal: 2 ml 0.5% heavy bupivacaine ± fentanyl</li>
-  </ul></details>
+<details>
+<summary>Epidural</summary>
+<ul>
+<li><strong>Indications</strong></li>
+<ul>
+  <li>Maternal request for analgesia in labour</li>
+</ul>
+<li><strong>Contraindications</strong></li>
+<ul>
+  <li>Maternal refusal</li>
+</ul>
+<li><strong>Procedure</strong></li>
+<ul>
+  <li>L2/3, L3/4, L4/5</li>
+  <li>16G Tuohy, LOR to saline</li>
+  <li>Leave 5cm of catheter in the epidural space</li>
+  <li>Routine post-insertion checks (meniscal drop, aspiration)</li>
+  <li>Secure with Lockit, tegaderm and Mefix dressing</li>
+  <li>Test dose 5ml + 10ml loading of low-dose bag mixture (0.1% L-bupivacaine + 2mcg/ml fentanyl)</li>
+  <li>Maintenance infusion via Bodyguard pump</li>
+  <ul>
+    <li>Code 611</li>
+    <li>PCEA with 8ml (UHL) or 10ml (QEH) bolus with 20min lockout (max 120ml / 4 hours)</li>
+  </ul>
+</ul>
+</ul>
+</details>
 
-  <details><summary>Perineal Tear Repair</summary><ul>
-    <li>Sacral block required</li>
-    <li>Epidural top-up or spinal 1.5–2 ml heavy bupivacaine</li>
-    <li>Remain sitting ~3 minutes</li>
-  </ul></details>
-</div>
+<details>
+<summary>PCA</summary>
+<ul>
+<li>Consider if neuraxial analgesia contraindicated or declined</li>
+<li>Remifentanil PCA under local protocol</li>
+<li>Requires 1:1 midwifery care and continuous monitoring</li>
+</ul>
+</details>
 
-<button class="nav-button secondary" data-target="emergencies">
-  <span>Emergencies</span><span class="chevron"></span>
-</button>
-<div id="emergencies" class="section">
-  <details><summary>Post-Partum Haemorrhage</summary><ul>
-    <li>High-flow O₂</li>
-    <li>2 large-bore IV cannulae</li>
-    <li>TXA 1g IV early</li>
-    <li>Activate major haemorrhage protocol</li>
-  </ul></details>
-
-  <details><summary>Eclampsia</summary><ul>
-    <li>Airway protection</li>
-    <li>Magnesium sulphate loading + infusion</li>
-    <li>Control severe hypertension</li>
-  </ul></details>
-
-  <details><summary>High Spinal / Total Spinal</summary><ul>
-    <li>Immediate airway support</li>
-    <li>Left lateral tilt</li>
-    <li>Vasopressors and ventilation</li>
-  </ul></details>
 </div>
 
 </div>
@@ -238,7 +281,6 @@ Version 2026-02-07 · Based on LGT Obstetric Anaesthesia Guidelines & EAOAG Quic
     if (btn) btn.click();
   }
 
-  // SAFE PWA REGISTRATION
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js");
   }
