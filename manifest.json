@@ -1,15 +1,15 @@
 {
-  "name": "Obs Anaesthesia Quick Ref",
-  "short_name": "Obs Anaes",
+  "name": "LGT Obstetric Anaesthesia",
+  "short_name": "LGTObsAnaes",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#005EB8",
   "icons": [
     {
-      "src": "icon.svg",
+      "src": "icon.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png"
     }
   ]
 }
