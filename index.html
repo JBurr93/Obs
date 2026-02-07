@@ -286,9 +286,8 @@ document.getElementById('search').addEventListener('input', e => {
   });
 });
 
-// SERVICE WORKER TEMPORARILY DISABLED
-console.log("SW disabled for reset");
-
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
 }
 </script>
 
