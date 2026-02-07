@@ -11,7 +11,9 @@
 <style>
 :root {
   --nhs-blue: #005EB8;
-  --nhs-dark: #003087;
+  --nhs-blue-2: #004C99;
+  --nhs-blue-3: #004080;
+  --nhs-blue-emergency: #002F5F;
   --nhs-grey: #425563;
   --bg: #f4f6f8;
   --card: #ffffff;
@@ -35,9 +37,12 @@ header {
 
 .logo {
   width: 64px;
-  margin: 0 auto 0.3rem;
+  height: 64px;
+  margin: 0 auto 0.4rem;
+  display: block;
 }
 
+/* LAYOUT */
 .container {
   max-width: 900px;
   margin: auto;
@@ -47,8 +52,6 @@ header {
 /* BUTTONS */
 .nav-button {
   width: 100%;
-  background: var(--nhs-blue);
-  color: white;
   border: none;
   padding: 0.9rem 1rem;
   margin-bottom: 0.3rem;
@@ -60,13 +63,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: white;
 }
 
-.nav-button.secondary,
+.nav-button.lscs { background: var(--nhs-blue); }
+.nav-button.labour { background: var(--nhs-blue-2); }
+.nav-button.procedures { background: var(--nhs-blue-3); }
+.nav-button.emergencies { background: var(--nhs-blue-emergency); }
+
 .nav-button.open {
-  background: var(--nhs-dark);
+  filter: brightness(0.9);
 }
 
+/* Chevron */
 .chevron {
   width: 0.6rem;
   height: 0.6rem;
@@ -102,7 +111,7 @@ details {
 
 summary {
   font-weight: 700;
-  color: var(--nhs-dark);
+  color: #003087;
   cursor: pointer;
 }
 
@@ -123,169 +132,11 @@ ul ul {
 <body>
 
 <header>
-  <!-- LOGO (no background rectangle, fixes white corners) -->
-  <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
-    <path d="M35 15 C28 30, 28 45, 35 60 C42 75, 42 85, 35 95"
-          fill="none" stroke="white" stroke-width="6"/>
-    <g fill="white">
-      <circle cx="38" cy="25" r="4"/>
-      <circle cx="38" cy="40" r="4"/>
-      <circle cx="38" cy="55" r="4"/>
-      <circle cx="38" cy="70" r="4"/>
-    </g>
-    <line x1="80" y1="30" x2="45" y2="55" stroke="white" stroke-width="3"/>
-    <polygon points="42,56 48,52 48,58" fill="white"/>
-  </svg>
+  <!-- USE APP ICON DIRECTLY -->
+  <img src="icon.png" alt="App logo" class="logo">
 
   <h1>LGT Obstetric Anaesthesia</h1>
   <p>Quick Reference Guide</p>
 </header>
 
-<div class="container">
-
-<!-- LSCS -->
-<button class="nav-button" data-target="lscs">
-  <span>LSCS</span><span class="chevron"></span>
-</button>
-<div id="lscs" class="section">
-
-<details>
-<summary>LSCS – Regional Anaesthesia (Spinal)</summary>
-<ul>
-<li>14–16G IV access, warmed fluids running</li>
-<li>2.2–2.5 ml 0.5% heavy bupivacaine + 300 mcg diamorphine</li>
-<li>Phenylephrine infusion 50mcg/ml started at 40ml/hr</li>
-<li>Aiming bilateral sensory block T4–S3</li>
-</ul>
-</details>
-
-<details>
-<summary>LSCS – CSE</summary>
-<ul>
-<li>Consider for prolonged surgery or complex medical conditions</li>
-<li>Reduce spinal dose in cardiac disease, short stature, obesity</li>
-<li>Phenylephrine as above</li>
-<li>Tegaderm dressing + mefix strip</li>
-</ul>
-</details>
-
-<details>
-<summary>LSCS – Epidural Top-Up</summary>
-<ul>
-<li>Only if functioning adequately. If not, remove and place spinal</li>
-<li>0.5% bupivacaine or 0.75% ropivacaine 15–20 ml in 5 ml increments</li>
-<li>OR 2% lidocaine + adrenaline 1:200,000</li>
-<li>Add fentanyl 50–100 mcg</li>
-<li>Diamorphine 3 mg (or PF morphine 3 mg) at end</li>
-</ul>
-</details>
-
-<details>
-<summary>Intra-operative pain under regional anaesthesia</summary>
-<ul>
-<li>If patient has epidural, a further top up can be given</li>
-<li>Offer GA, and convert to GA if patient accepts</li>
-<li>Rescue analgesia includes:</li>
-<ul>
-  <li>Alfentanil 200mcg increments, fentanyl 20mcg increments</li>
-  <li>Ketamine 10–20mg IV</li>
-  <li>Nitrous oxide in O₂ (50:50)</li>
-</ul>
-<li>Clearly document the events and discussions with patient</li>
-</ul>
-</details>
-
-</div>
-
-<!-- LABOUR ANALGESIA -->
-<button class="nav-button" data-target="labour">
-  <span>Labour Analgesia</span><span class="chevron"></span>
-</button>
-<div id="labour" class="section">
-
-<details>
-<summary>Epidural</summary>
-<ul>
-<li><strong>Indications</strong></li>
-<ul>
-  <li>Maternal request for analgesia in labour</li>
-</ul>
-<li><strong>Contraindications</strong></li>
-<ul>
-  <li>Maternal refusal</li>
-</ul>
-<li><strong>Procedure</strong></li>
-<ul>
-  <li>L2/3, L3/4, L4/5</li>
-  <li>16G Tuohy, LOR to saline</li>
-  <li>Leave 5cm of catheter in the epidural space</li>
-  <li>Routine post-insertion checks (meniscal drop, aspiration)</li>
-  <li>Secure with Lockit, tegaderm and Mefix dressing</li>
-  <li>Test dose 5ml + 10ml loading of low-dose bag mixture (0.1% L-bupivacaine + 2mcg/ml fentanyl)</li>
-  <li>Maintenance infusion via Bodyguard pump</li>
-  <ul>
-    <li>Code 611</li>
-    <li>PCEA with 8ml (UHL) or 10ml (QEH) bolus with 20min lockout (max 120ml / 4 hours)</li>
-  </ul>
-</ul>
-</ul>
-</details>
-
-<details>
-<summary>PCA</summary>
-<ul>
-<li>Consider if neuraxial analgesia contraindicated or declined</li>
-<li>Remifentanil PCA under local protocol</li>
-<li>Requires 1:1 midwifery care and continuous monitoring</li>
-</ul>
-</details>
-
-</div>
-
-</div>
-
-<div class="footer">
-Version 2026-02-07 · Based on LGT Obstetric Anaesthesia Guidelines & EAOAG Quick Reference (2018)
-</div>
-
-<script>
-(function () {
-  const buttons = document.querySelectorAll(".nav-button");
-
-  function closeAll() {
-    document.querySelectorAll(".section").forEach(s => s.classList.remove("open"));
-    buttons.forEach(b => b.classList.remove("open"));
-    localStorage.removeItem("openSection");
-  }
-
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      const section = button.nextElementSibling;
-      if (!section || !section.classList.contains("section")) return;
-
-      const isOpen = section.classList.contains("open");
-      closeAll();
-
-      if (!isOpen) {
-        section.classList.add("open");
-        button.classList.add("open");
-        localStorage.setItem("openSection", button.dataset.target);
-        button.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
-  });
-
-  const last = localStorage.getItem("openSection");
-  if (last) {
-    const btn = document.querySelector(`.nav-button[data-target="${last}"]`);
-    if (btn) btn.click();
-  }
-
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
-  }
-})();
-</script>
-
-</body>
-</html>
+<div
