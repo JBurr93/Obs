@@ -203,29 +203,65 @@ ul ul {
 </div>
 
 <div class="footer">
-Based on LGT Obstetric Anaesthesia Guidelines & EAOAG Quick Reference (2018)
+Based on LGT Obstetric Anaesthesia Guidelines
 </div>
 
 <script>
-function showSection(id) {
-  document.querySelectorAll(".section").forEach(s => s.style.display = "none");
-  const el = document.getElementById(id);
-  if (el) el.style.display = "block";
-}
+(function () {
 
-document.querySelectorAll(".nav-button").forEach(btn => {
-  btn.addEventListener("click", () => {
-    showSection(btn.dataset.target);
+  // Initialise button labels with closed indicator
+  document.querySelectorAll(".nav-button").forEach(button => {
+    const label = button.textContent.trim();
+    button.dataset.label = label;
+    button.textContent = "▶ " + label;
   });
-});
 
-document.getElementById("search").addEventListener("input", e => {
-  const term = e.target.value.toLowerCase();
-  document.querySelectorAll(".section:not([style*='none']) details")
-    .forEach(d => {
-      d.style.display = d.innerText.toLowerCase().includes(term) ? "" : "none";
+  function closeAllSections() {
+    document.querySelectorAll(".section").forEach(section => {
+      section.style.display = "none";
     });
-});
+
+    document.querySelectorAll(".nav-button").forEach(button => {
+      button.textContent = "▶ " + button.dataset.label;
+      button.classList.remove("open");
+    });
+  }
+
+  document.querySelectorAll(".nav-button").forEach(button => {
+    button.addEventListener("click", () => {
+      const targetId = button.dataset.target;
+      const section = document.getElementById(targetId);
+
+      const isOpen = section.style.display === "block";
+
+      // Always close everything first
+      closeAllSections();
+
+      // If it was previously closed, open it
+      if (!isOpen) {
+        section.style.display = "block";
+        button.textContent = "▼ " + button.dataset.label;
+        button.classList.add("open");
+      }
+    });
+  });
+
+  // Search only within the currently open section
+  const search = document.getElementById("search");
+  if (search) {
+    search.addEventListener("input", () => {
+      const term = search.value.toLowerCase();
+      document
+        .querySelectorAll(".section:not([style*='none']) details")
+        .forEach(d => {
+          d.style.display = d.innerText.toLowerCase().includes(term)
+            ? ""
+            : "none";
+        });
+    });
+  }
+
+})();
 </script>
 
 </body>
