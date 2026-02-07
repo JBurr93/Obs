@@ -9,7 +9,6 @@
 <meta name="theme-color" content="#005EB8">
 
 <style>
-/* ================= NHS TYPOGRAPHY ================= */
 :root {
   --nhs-blue: #005EB8;
   --nhs-dark: #003087;
@@ -20,35 +19,12 @@
 
 body {
   margin: 0;
-  font-family:
-    Arial,
-    Helvetica,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  font-family: Arial, Helvetica, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg);
   color: #212121;
   line-height: 1.45;
 }
 
-h1 {
-  font-size: 1.6rem;
-  margin: 0.2rem 0;
-}
-
-h2 {
-  font-size: 1.3rem;
-  margin: 0;
-}
-
-h3 {
-  font-size: 1.1rem;
-  margin: 0;
-}
-
-/* ================= HEADER ================= */
 header {
   background: var(--nhs-blue);
   color: white;
@@ -61,7 +37,6 @@ header {
   margin: 0 auto 0.3rem;
 }
 
-/* ================= LAYOUT ================= */
 .container {
   max-width: 900px;
   margin: auto;
@@ -77,7 +52,6 @@ input[type="search"] {
   margin-bottom: 1rem;
 }
 
-/* ================= BUTTON NAV ================= */
 .nav-button {
   width: 100%;
   background: var(--nhs-blue);
@@ -100,7 +74,6 @@ input[type="search"] {
   margin-top: 1rem;
 }
 
-/* ================= CARDS ================= */
 details {
   background: var(--card);
   border-radius: 6px;
@@ -119,7 +92,6 @@ ul ul {
   margin-left: 1.2rem;
 }
 
-/* ================= FOOTER ================= */
 .footer {
   text-align: center;
   font-size: 0.8rem;
@@ -132,24 +104,17 @@ ul ul {
 <body>
 
 <header>
-  <!-- SVG LOGO -->
   <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
-    <rect x="0" y="0" width="100" height="100" rx="20" fill="#005EB8"/>
-    <!-- spine -->
-    <path d="M35 15
-             C28 30, 28 45, 35 60
-             C42 75, 42 85, 35 95"
+    <rect width="100" height="100" rx="20" fill="#005EB8"/>
+    <path d="M35 15 C28 30, 28 45, 35 60 C42 75, 42 85, 35 95"
           fill="none" stroke="white" stroke-width="6"/>
-    <!-- vertebrae -->
     <g fill="white">
       <circle cx="38" cy="25" r="4"/>
       <circle cx="38" cy="40" r="4"/>
       <circle cx="38" cy="55" r="4"/>
       <circle cx="38" cy="70" r="4"/>
     </g>
-    <!-- needle -->
-    <line x1="80" y1="30" x2="45" y2="55"
-          stroke="white" stroke-width="3"/>
+    <line x1="80" y1="30" x2="45" y2="55" stroke="white" stroke-width="3"/>
     <polygon points="42,56 48,52 48,58" fill="white"/>
   </svg>
 
@@ -161,110 +126,78 @@ ul ul {
 
 <input type="search" id="search" placeholder="Search visible content…">
 
-<!-- ================= NAV BUTTONS ================= -->
-<button class="nav-button" onclick="showSection('lscs')">LSCS</button>
-<button class="nav-button" onclick="showSection('procedures')">Other Obstetric Procedures</button>
-<button class="nav-button secondary" onclick="showSection('emergencies')">Emergencies</button>
+<!-- NAV BUTTONS -->
+<button class="nav-button" data-target="lscs">LSCS</button>
+<button class="nav-button" data-target="procedures">Other Obstetric Procedures</button>
+<button class="nav-button secondary" data-target="emergencies">Emergencies</button>
 
-<!-- ================= LSCS ================= -->
+<!-- LSCS -->
 <div id="lscs" class="section">
+  <!-- CONTENT UNCHANGED -->
+  <details><summary>LSCS – Regional Anaesthesia (Spinal)</summary><ul>
+    <li>14–16G IV access, warmed fluids running</li>
+    <li>2.2–2.5 ml 0.5% heavy bupivacaine + 300 mcg diamorphine</li>
+    <li>Phenylephrine infusion 50mcg/ml started at 40ml/hr</li>
+    <li>Aiming bilateral sensory block T4–S3</li>
+  </ul></details>
 
-<details>
-<summary>LSCS – Regional Anaesthesia (Spinal)</summary>
-<ul>
-<li>14–16G IV access, warmed fluids running</li>
-<li>2.2–2.5 ml 0.5% heavy bupivacaine + 300 mcg diamorphine</li>
-<li>Phenylephrine infusion 50mcg/ml started at 40ml/hr</li>
-<li>Aiming bilateral sensory block T4–S3</li>
-</ul>
-</details>
+  <details><summary>LSCS – CSE</summary><ul>
+    <li>Consider for prolonged surgery or complex medical conditions</li>
+    <li>Reduce spinal dose in cardiac disease, short stature, obesity</li>
+    <li>Phenylephrine as above</li>
+    <li>Tegaderm dressing + mefix strip</li>
+  </ul></details>
 
-<details>
-<summary>LSCS – CSE</summary>
-<ul>
-<li>Consider for prolonged surgery or complex medical conditions</li>
-<li>Reduce spinal dose in cardiac disease, short stature, obesity</li>
-<li>Phenylephrine as above</li>
-<li>Tegaderm dressing + mefix strip</li>
-</ul>
-</details>
-
-<details>
-<summary>LSCS – Epidural Top-Up</summary>
-<ul>
-<li>Only if functioning adequately. If not, remove and place spinal</li>
-<li>0.5% bupivacaine or 0.75% ropivacaine 15–20 ml in 5 ml increments</li>
-<li>OR 2% lidocaine + adrenaline 1:200,000</li>
-<li>Add fentanyl 50–100 mcg</li>
-<li>Diamorphine 3 mg (or PF morphine 3 mg) at end</li>
-</ul>
-</details>
-
+  <details><summary>LSCS – Epidural Top-Up</summary><ul>
+    <li>Only if functioning adequately. If not, remove and place spinal</li>
+    <li>0.5% bupivacaine or 0.75% ropivacaine 15–20 ml in 5 ml increments</li>
+    <li>OR 2% lidocaine + adrenaline 1:200,000</li>
+    <li>Add fentanyl 50–100 mcg</li>
+    <li>Diamorphine 3 mg (or PF morphine 3 mg) at end</li>
+  </ul></details>
 </div>
 
-<!-- ================= PROCEDURES ================= -->
+<!-- PROCEDURES -->
 <div id="procedures" class="section">
+  <details><summary>Trial of Forceps</summary><ul>
+    <li>Anaesthetic as for LSCS (block to T4)</li>
+    <li>Potential for conversion to LSCS</li>
+    <li>No prophylactic antibiotics</li>
+  </ul></details>
 
-<details>
-<summary>Trial of Forceps</summary>
-<ul>
-<li>Anaesthetic as for LSCS (block to T4)</li>
-<li>Potential for conversion to LSCS</li>
-<li>No prophylactic antibiotics</li>
-</ul>
-</details>
+  <details><summary>Manual Removal of Placenta</summary><ul>
+    <li>If unstable → GA</li>
+    <li>If stable → neuraxial (T6)</li>
+    <li>Spinal: 2 ml 0.5% heavy bupivacaine ± fentanyl</li>
+  </ul></details>
 
-<details>
-<summary>Manual Removal of Placenta</summary>
-<ul>
-<li>If unstable → GA</li>
-<li>If stable → neuraxial (T6)</li>
-<li>Spinal: 2 ml 0.5% heavy bupivacaine ± fentanyl</li>
-</ul>
-</details>
-
-<details>
-<summary>Perineal Tear Repair</summary>
-<ul>
-<li>Sacral block required</li>
-<li>Epidural top-up or spinal 1.5–2 ml heavy bupivacaine</li>
-<li>Remain sitting ~3 minutes</li>
-</ul>
-</details>
-
+  <details><summary>Perineal Tear Repair</summary><ul>
+    <li>Sacral block required</li>
+    <li>Epidural top-up or spinal 1.5–2 ml heavy bupivacaine</li>
+    <li>Remain sitting ~3 minutes</li>
+  </ul></details>
 </div>
 
-<!-- ================= EMERGENCIES ================= -->
+<!-- EMERGENCIES -->
 <div id="emergencies" class="section">
+  <details><summary>Post-Partum Haemorrhage</summary><ul>
+    <li>High-flow O₂</li>
+    <li>2 large-bore IV cannulae</li>
+    <li>TXA 1g IV early</li>
+    <li>Activate major haemorrhage protocol</li>
+  </ul></details>
 
-<details>
-<summary>Post-Partum Haemorrhage</summary>
-<ul>
-<li>High-flow O₂</li>
-<li>2 large-bore IV cannulae</li>
-<li>TXA 1g IV early</li>
-<li>Activate major haemorrhage protocol</li>
-</ul>
-</details>
+  <details><summary>Eclampsia</summary><ul>
+    <li>Airway protection</li>
+    <li>Magnesium sulphate loading + infusion</li>
+    <li>Control severe hypertension</li>
+  </ul></details>
 
-<details>
-<summary>Eclampsia</summary>
-<ul>
-<li>Airway protection</li>
-<li>Magnesium sulphate loading + infusion</li>
-<li>Control severe hypertension</li>
-</ul>
-</details>
-
-<details>
-<summary>High Spinal / Total Spinal</summary>
-<ul>
-<li>Immediate airway support</li>
-<li>Left lateral tilt</li>
-<li>Vasopressors and ventilation</li>
-</ul>
-</details>
-
+  <details><summary>High Spinal / Total Spinal</summary><ul>
+    <li>Immediate airway support</li>
+    <li>Left lateral tilt</li>
+    <li>Vasopressors and ventilation</li>
+  </ul></details>
 </div>
 
 </div>
@@ -274,46 +207,26 @@ Based on LGT Obstetric Anaesthesia Guidelines & EAOAG Quick Reference (2018)
 </div>
 
 <script>
-(function () {
+function showSection(id) {
+  document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+  const el = document.getElementById(id);
+  if (el) el.style.display = "block";
+}
 
-  function hideAllSections() {
-    document.querySelectorAll(".section").forEach(section => {
-      section.style.display = "none";
-    });
-  }
-
-  function showSection(id) {
-    hideAllSections();
-    const el = document.getElementById(id);
-    if (el) {
-      el.style.display = "block";
-    }
-  }
-
-  document.querySelectorAll(".nav-button").forEach(button => {
-    button.addEventListener("click", function () {
-      const target = this.getAttribute("data-target");
-      showSection(target);
-    });
+document.querySelectorAll(".nav-button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    showSection(btn.dataset.target);
   });
+});
 
-  const search = document.getElementById("search");
-  if (search) {
-    search.addEventListener("input", function () {
-      const term = this.value.toLowerCase();
-      document
-        .querySelectorAll(".section:not([style*='none']) details")
-        .forEach(d => {
-          d.style.display = d.innerText.toLowerCase().includes(term)
-            ? ""
-            : "none";
-        });
+document.getElementById("search").addEventListener("input", e => {
+  const term = e.target.value.toLowerCase();
+  document.querySelectorAll(".section:not([style*='none']) details")
+    .forEach(d => {
+      d.style.display = d.innerText.toLowerCase().includes(term) ? "" : "none";
     });
-  }
-
-})();
+});
 </script>
-
 
 </body>
 </html>
