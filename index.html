@@ -1,55 +1,74 @@
-<!-- force pages rebuild -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title> LGT Obstetric Anaesthesia – Quick Reference</title>
+<title>LGT Obstetric Anaesthesia – Quick Reference</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#005EB8">
+
 <style>
+:root {
+  --nhs-blue: #005EB8;
+  --nhs-dark: #003087;
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #212121;
+}
+
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Arial, Helvetica, system-ui, sans-serif;
   margin: 0;
-  padding: 0;
-  background: #f7f7f7;
-  color: #222;
+  background: var(--bg);
+  color: var(--text);
 }
 
 header {
-  background: #003366;
+  background: var(--nhs-blue);
   color: white;
   padding: 1rem;
   text-align: center;
 }
 
 .container {
-  padding: 1rem;
   max-width: 900px;
   margin: auto;
+  padding: 1rem;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.section-title {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--nhs-dark);
 }
 
 details {
-  background: white;
+  background: var(--card);
   border-radius: 6px;
-  margin-bottom: 0.75rem;
   padding: 0.75rem 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 summary {
   font-weight: 600;
-  font-size: 1.05rem;
   cursor: pointer;
 }
 
-ul {
-  margin-top: 0.5rem;
-}
-
-.section-title {
-  margin-top: 1.5rem;
-  font-weight: 700;
-  font-size: 1.2rem;
+ul ul {
+  margin-left: 1.25rem;
 }
 
 .footer {
@@ -70,183 +89,143 @@ ul {
 
 <div class="container">
 
-<div class="section-title">LSCS – Regional Anaesthesia</div>
+<input type="search" id="search" placeholder="Search (e.g. spinal, GA, PPH, forceps)…">
+
+<!-- ================= LSCS ================= -->
+<div class="section-title">Lower Segment Caesarean Section (LSCS)</div>
 
 <details>
-<summary>Spinal – Standard</summary>
+<summary>Regional Anaesthesia – Spinal</summary>
 <ul>
 <li>14–16G IV access, warmed fluids running</li>
 <li>2.2–2.5 ml 0.5% heavy bupivacaine + 300 mcg diamorphine</li>
-<li>Phenylephrine infusion 50mcg/ml started at 40ml/hr</li>
-<li>Aiming bilateral sensory block T4-S3</li>
+<li>
+  Phenylephrine infusion 50 mcg/ml
+  <ul>
+    <li>Start at 40 ml/hr</li>
+    <li>Aim &lt;10% drop in systolic BP</li>
+  </ul>
+</li>
+<li>Aim bilateral sensory block T4–S3</li>
 </ul>
 </details>
 
 <details>
-<summary>CSE</summary>
+<summary>Regional Anaesthesia – CSE</summary>
 <ul>
-<li>Consider for prolonged surgery or patients with complex medical conditions </li>
+<li>Consider if prolonged surgery or complex medical conditions</li>
 <li>Reduce spinal dose in cardiac disease, short stature, obesity</li>
 <li>Phenylephrine as above</li>
-<li>Tegaderm dressing + mefix strip</li>
+<li>Tegaderm + Mefix dressing</li>
 </ul>
 </details>
 
 <details>
-<summary>Epidural Top-Up</summary>
+<summary>Regional Anaesthesia – Epidural Top-Up</summary>
 <ul>
-<li>Only if functioning adequately. If not, remove and place spinal</li>
+<li>Only if epidural functioning appropriately</li>
 <li>0.5% bupivacaine or 0.75% ropivacaine 15–20 ml in 5 ml increments</li>
-<li>OR 2% lidocaine + adrenaline 1:200,000 (0.1ml 1:1000 adrenaline in 20ml 2% lidocaine)</li>
-<li>Add fentanyl 50–100 mcg</li>
-<li>Diamorphine 3 mg (or preservative-free morphine 3mg) down epidural at end for post-op analgesia</li>
-<li>Remove epidural unless contraindicated (e.g. coagulopathy) or high risk of return to theatre</li>
+<li>OR 2% lidocaine + adrenaline 1:200,000</li>
+<li>Fentanyl 50–100 mcg</li>
+<li>Diamorphine 3 mg (or PF morphine 3 mg) at end for post-op analgesia</li>
+<li>Remove epidural unless contraindicated or high risk of return to theatre</li>
 </ul>
 </details>
 
 <details>
-<summary>Inadequate analgesia under RA</summary>
+<summary>LSCS – General Anaesthesia</summary>
 <ul>
-<li>If patient has epidural, a further top up can be given</li>
-<li>Offer GA, and convert to GA if patient accepts</li>
-<li>Rescue analgesia includes:</li>
-  <li>Alfentanil 200mcg increments, fentanyl 20mcg increments
-  <li>Ketamine 10-20mg IV</li>
-  <li>Nitrous oxide in O2 (50:50)</li>
-<li>Clearly document the events and discussions with patient</li>
-</ul>
-</details>
-
-  
-<div class="section-title">LSCS – General Anaesthesia</div>
-
-<details>
-<summary>Indications</summary>
-<ul>
-<li>Category 1 emergencies</li>
-<li>Neuraxial contraindicated</li>
+<li>Indications:
   <ul>
-  <li>Maternal refusal</li>
-  <li>Maternal coagulopathy</li>
-  <li>CVS instability</li>
-  <li>Maternal sepsis/localised infection</li>
+    <li>Category 1 emergency</li>
+    <li>Neuraxial contraindicated or inadequate</li>
   </ul>
-<li>Regional anaesthesia inadequate for surgery</li>
+</li>
+<li>30 ml sodium citrate PO</li>
+<li>RSI with cricoid pressure</li>
+<li>Videolaryngoscopy recommended (size 7 COETT)</li>
+<li>Opioid analgesia after delivery ± TAP blocks</li>
 </ul>
 </details>
 
 <details>
-<summary>Management</summary>
-<ul>
-<li>30ml PO sodium citrate</li>
-<li>14-16G cannula with warm fluids running</li>
-<li>Ramped position with Oxford Help pillow</li>
-<li>Suction switched on and accessible</li>
-<li>Peroxygenation:</li>
-  <ul>
-  <li>Pre-oxygenate with 100% O2 via facemask</li>
-  <li>Consider HFNO during apnoea</li>
-  </ul>
-<li>When Surgeon is scrubbed and ready, induce:</li>
-  <ul>
-  <li>Propofol or Thiopentone</li>
-  <li>Rocuronium or Suxamethonium</li>
-  <li>Alfentanil up to 1mg for hypertensive mothers</li>
-  </ul>
-<li>Videolaryngscopy strongly recommended, size 7 COETT</li>
-<li>Volatile agent immediately after intubation in 50% N20 at high flows aiming MAC 1.0</li>
-<li>Opioid analgesia following delivery (10-15mg IV morphine) + PCA</li>
-  <ul>
-  <li>Consider TAP blocks if patient consented (20ml 0.25% bupivacaine each side)</li>
-  </ul>
-</ul>
-</details>
-  
-<div class="section-title">LSCS - Post-op care</div>
-
-<details>
-<summary>End of Surgery</summary>
+<summary>LSCS – Post-operative Care</summary>
 <ul>
 <li>Paracetamol 1 g IV/PR</li>
 <li>Diclofenac 100 mg PR</li>
+<li>Regular paracetamol and ibuprofen</li>
+<li>Opioids PRN with anti-emetics</li>
+</ul>
+</details>
+
+<!-- ================= OTHER PROCEDURES ================= -->
+<div class="section-title">Other Obstetric Procedures</div>
+
+<details>
+<summary>Trial of Forceps</summary>
+<ul>
+<li>Anaesthesia as for LSCS (block to T4)</li>
+<li>Potential for conversion to LSCS</li>
+<li>No routine prophylactic antibiotics (discuss with obstetrician)</li>
 </ul>
 </details>
 
 <details>
-<summary>Post-Op Prescription - 'C-section Medication Inpatient Protocol)</summary>
+<summary>Manual Removal of Placenta</summary>
 <ul>
-<li>Paracetamol 1 g QDS</li>
-<li>Ibuprofen 400 mg TDS–QDS</li>
-<li>Morphine Sulphate MR 10mg BD for 2 doses</li>
-<li>Morphine Sulphate IR 10–20 mg 2-hourly PRN</li>
-<li>Cyclizine 50mg PO TDS</li>
-<li>Ondansetron 4mg IV TDS</li>
-<li>Chlorphenamine 4mg PO QDS</li>
-<li>Naloxone 25mcg SC hourly (max 3 doses)</li>
-</ul>
-</details>
-
-<div class="section-title">Labour Analgesia - Epidural</div>
-
-<details>
-<summary>Indications</summary>
-<ul>
-<li>Maternal request for analgesia in labour</li>
-</ul>
-</details>
-
-<details>
-<summary>Contraindications</summary>
-<ul>
-<li>Maternal refusal</li>
-</ul>
-</details>
-
-<details>
-<summary>Procedure</summary>
-<ul>
-<li>L2/3, L3/4, L4/5</li>
-<li>16G Tuohy, LOR to saline</li>
-<li>Leave 5cm of catheter in the epidural space</li>
-<li>Routine post-insertion checks (meniscal drop, aspiration)</li>
-<li>Secure with Lockit, tegaderm and Mefix dressing</li>
-<li>Test dose 5ml + 10ml loading of low-dose bag mixture (0.1% L-bupivacaine + 2mcg/ml fentanyl)</li>
-<li>Maintenance infusion via Bodyguard pump</li>
+<li>Assess haemodynamic stability</li>
+<li>If unstable → General anaesthesia</li>
+<li>If stable → Neuraxial anaesthesia (block to T6)</li>
+<li>Spinal:
   <ul>
-  <li>Code 611</li>
-  <li>PCEA with 8ml (UHL) or 10ml (QEH) bolus with 20min interval lockout (max 120ml in 4 hours)</li>
+    <li>2 ml 0.5% heavy bupivacaine ± fentanyl 15–25 mcg</li>
   </ul>
-</ul>
-</details>  
-
-<div class="section-title">Post-Partum Haemorrhage</div>
-
-<details>
-<summary>Initial Management</summary>
-<ul>
-<li>High-flow O₂</li>
-<li>2 large-bore IV lines</li>
-<li>Warm fluids</li>
-<li>Activate MHP if &gt;1.5 L</li>
-<li>TXA 1 g IV</li>
+</li>
+<li>Epidural top-up as alternative</li>
 </ul>
 </details>
 
 <details>
-<summary>Uterotonics</summary>
+<summary>Perineal Tear Repair</summary>
 <ul>
-<li>Syntocinon 5 IU IV + infusion</li>
-<li>Ergometrine 500 mcg IM (avoid PET)</li>
-<li>Carboprost 250 mcg IM (avoid asthma)</li>
-<li>Misoprostol 0.4–1 mg PR</li>
+<li>Sacral block required</li>
+<li>Epidural top-up:
+  <ul>
+    <li>2% lidocaine + adrenaline OR</li>
+    <li>0.5% bupivacaine (10 ml)</li>
+  </ul>
+</li>
+<li>Spinal:
+  <ul>
+    <li>0.5% heavy bupivacaine 1.5–2 ml ± fentanyl</li>
+    <li>Remain sitting ~3 minutes to enhance sacral spread</li>
+  </ul>
+</li>
+<li>Paracetamol + diclofenac; opioids rarely required</li>
 </ul>
 </details>
 
 </div>
 
 <div class="footer">
-Based on LGT Obstetric Anaesthesia Guidelines 10th Ed.
+Based on LGT Obstetric Anaesthesia Guidelines & EAOAG Quick Reference (2018)
 </div>
+
+<script>
+// SEARCH
+const search = document.getElementById('search');
+search.addEventListener('input', () => {
+  const term = search.value.toLowerCase();
+  document.querySelectorAll('details').forEach(d => {
+    d.style.display = d.innerText.toLowerCase().includes(term) ? '' : 'none';
+  });
+});
+
+// PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+</script>
 
 </body>
 </html>
