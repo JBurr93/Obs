@@ -5,6 +5,7 @@
 <title>LGT Obstetric Anaesthesia – Quick Reference</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- PWA -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#005EB8">
 
@@ -43,53 +44,64 @@ header {
   padding: 1rem;
 }
 
-input[type="search"] {
-  width: 100%;
-  padding: 0.6rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-bottom: 1rem;
-}
-
 .nav-button {
   width: 100%;
   background: var(--nhs-blue);
   color: white;
   border: none;
-  padding: 0.9rem;
-  margin-bottom: 0.6rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 0.3rem;
   font-size: 1.05rem;
   font-weight: 700;
   border-radius: 6px;
   cursor: pointer;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.nav-button.secondary {
+.nav-button.secondary,
+.nav-button.open {
   background: var(--nhs-dark);
 }
 
+.chevron {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-right: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: rotate(-45deg);
+  transition: transform 0.25s ease;
+}
+
+.nav-button.open .chevron {
+  transform: rotate(45deg);
+}
+
 .section {
-  display: none;
-  margin-top: 1rem;
+  background: var(--card);
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.25s ease;
+}
+
+.section.open {
+  max-height: 5000px;
+  opacity: 1;
 }
 
 details {
-  background: var(--card);
-  border-radius: 6px;
   padding: 0.75rem 1rem;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 summary {
   font-weight: 700;
   color: var(--nhs-dark);
   cursor: pointer;
-}
-
-ul ul {
-  margin-left: 1.2rem;
 }
 
 .footer {
@@ -124,14 +136,9 @@ ul ul {
 
 <div class="container">
 
-<input type="search" id="search" placeholder="Search visible content…">
-
-<!-- NAV BUTTONS -->
-<button class="nav-button" data-target="lscs">LSCS</button>
-<button class="nav-button" data-target="procedures">Other Obstetric Procedures</button>
-<button class="nav-button secondary" data-target="emergencies">Emergencies</button>
-
-<!-- LSCS -->
+<button class="nav-button" data-target="lscs">
+  <span>LSCS</span><span class="chevron"></span>
+</button>
 <div id="lscs" class="section">
   <!-- CONTENT UNCHANGED -->
   <details><summary>LSCS – Regional Anaesthesia (Spinal)</summary><ul>
@@ -157,7 +164,9 @@ ul ul {
   </ul></details>
 </div>
 
-<!-- PROCEDURES -->
+<button class="nav-button" data-target="procedures">
+  <span>Other Obstetric Procedures</span><span class="chevron"></span>
+</button>
 <div id="procedures" class="section">
   <details><summary>Trial of Forceps</summary><ul>
     <li>Anaesthetic as for LSCS (block to T4)</li>
@@ -178,7 +187,9 @@ ul ul {
   </ul></details>
 </div>
 
-<!-- EMERGENCIES -->
+<button class="nav-button secondary" data-target="emergencies">
+  <span>Emergencies</span><span class="chevron"></span>
+</button>
 <div id="emergencies" class="section">
   <details><summary>Post-Partum Haemorrhage</summary><ul>
     <li>High-flow O₂</li>
@@ -203,64 +214,46 @@ ul ul {
 </div>
 
 <div class="footer">
-Based on LGT Obstetric Anaesthesia Guidelines
+Version 2026-02-07 · Based on LGT Obstetric Anaesthesia Guidelines & EAOAG Quick Reference (2018)
 </div>
 
 <script>
 (function () {
+  const buttons = document.querySelectorAll(".nav-button");
 
-  // Initialise button labels with closed indicator
-  document.querySelectorAll(".nav-button").forEach(button => {
-    const label = button.textContent.trim();
-    button.dataset.label = label;
-    button.textContent = "▶ " + label;
-  });
-
-  function closeAllSections() {
-    document.querySelectorAll(".section").forEach(section => {
-      section.style.display = "none";
-    });
-
-    document.querySelectorAll(".nav-button").forEach(button => {
-      button.textContent = "▶ " + button.dataset.label;
-      button.classList.remove("open");
-    });
+  function closeAll() {
+    document.querySelectorAll(".section").forEach(s => s.classList.remove("open"));
+    buttons.forEach(b => b.classList.remove("open"));
+    localStorage.removeItem("openSection");
   }
 
-  document.querySelectorAll(".nav-button").forEach(button => {
+  buttons.forEach(button => {
     button.addEventListener("click", () => {
-      const targetId = button.dataset.target;
-      const section = document.getElementById(targetId);
+      const section = button.nextElementSibling;
+      if (!section || !section.classList.contains("section")) return;
 
-      const isOpen = section.style.display === "block";
+      const isOpen = section.classList.contains("open");
+      closeAll();
 
-      // Always close everything first
-      closeAllSections();
-
-      // If it was previously closed, open it
       if (!isOpen) {
-        section.style.display = "block";
-        button.textContent = "▼ " + button.dataset.label;
+        section.classList.add("open");
         button.classList.add("open");
+        localStorage.setItem("openSection", button.dataset.target);
+        button.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     });
   });
 
-  // Search only within the currently open section
-  const search = document.getElementById("search");
-  if (search) {
-    search.addEventListener("input", () => {
-      const term = search.value.toLowerCase();
-      document
-        .querySelectorAll(".section:not([style*='none']) details")
-        .forEach(d => {
-          d.style.display = d.innerText.toLowerCase().includes(term)
-            ? ""
-            : "none";
-        });
-    });
+  const last = localStorage.getItem("openSection");
+  if (last) {
+    const btn = document.querySelector(`.nav-button[data-target="${last}"]`);
+    if (btn) btn.click();
   }
 
+  // SAFE PWA REGISTRATION
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
 })();
 </script>
 
