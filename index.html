@@ -27,12 +27,13 @@ body {
   line-height: 1.45;
 }
 
-/* HEADER */
+/* HEADER — FIXED */
 header {
   background: var(--nhs-blue);
   color: white;
   padding: 0.75rem 1rem 1rem;
   text-align: center;
+  position: relative; /* 🔑 critical fix */
 }
 
 .logo {
@@ -132,7 +133,7 @@ ul ul {
 <body>
 
 <header>
-  <!-- USE APP ICON DIRECTLY -->
+  <!-- APP LOGO (PNG, no white border) -->
   <img src="icon.png" alt="App logo" class="logo">
 
   <h1>LGT Obstetric Anaesthesia</h1>
