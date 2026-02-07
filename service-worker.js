@@ -1,4 +1,4 @@
-const CACHE = "obs-anaes-v1";
+const CACHE = "obs-anaes-v2";
 const ASSETS = [
   "./",
   "./index.html",
