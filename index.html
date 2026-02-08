@@ -43,6 +43,66 @@ header {
   display: block;
 }
 
+/* INFO BUTTON */
+.info-button {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* INFO MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.open {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  max-width: 520px;
+  width: 90%;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  color: #212121;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+}
+
+.modal-content a {
+  color: #005EB8;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: #005EB8;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
 /* LAYOUT */
 .container {
   max-width: 900px;
@@ -134,15 +194,18 @@ ul ul {
 <body>
 
 <header>
-  <!-- APP LOGO (PNG, no white border) -->
+  <!-- APP LOGO -->
   <img src="C817DF9A-E244-4105-A57A-6C82C5264252.png" alt="App logo" class="logo">
+
+  <!-- INFO BUTTON -->
+  <button class="info-button" aria-label="Information">i</button>
 
   <h1>LGT Obstetric Anaesthesia</h1>
   <p>Quick Reference Guide</p>
 </header>
 
 <div class="container">
-
+  
 <!-- Anaesthesia for Caesaraen delivery -->
 <button class="nav-button lscs" data-target="lscs">
   <span>Anaesthesia for Caesarean delivery</span><span class="chevron"></span>
@@ -452,6 +515,33 @@ ul ul {
 Version 2026-02-07 · Based on LGT Obstetric Anaesthesia Guidelines 10th Ed.
 </div>
 
+<!-- INFO MODAL -->
+<div class="modal" id="infoModal" aria-hidden="true">
+  <div class="modal-content">
+    <h2>About this guide</h2>
+
+    <p>
+      This application is a quick-reference summary based on the
+      <strong>LGT Obstetric Anaesthesia SOP</strong>.
+      It is intended for use by trained clinicians and does not replace
+      clinical judgement or formal guidelines.
+    </p>
+
+    <p>
+      <a href="LGT_Obstetric_Anaesthesia_SOP.pdf" target="_blank" rel="noopener">
+        View full LGT Obstetric Anaesthesia SOP (PDF)
+      </a>
+    </p>
+
+    <p>
+      Version 2026-02-07<br>
+      For local guidance only.
+    </p>
+
+    <button class="modal-close">Close</button>
+  </div>
+</div>
+
 <script>
 (function () {
   const buttons = document.querySelectorAll(".nav-button");
@@ -484,6 +574,28 @@ Version 2026-02-07 · Based on LGT Obstetric Anaesthesia Guidelines 10th Ed.
     const btn = document.querySelector(`.nav-button[data-target="${last}"]`);
     if (btn) btn.click();
   }
+
+  // INFO MODAL LOGIC
+  const infoButton = document.querySelector(".info-button");
+  const infoModal = document.getElementById("infoModal");
+  const closeModal = document.querySelector(".modal-close");
+
+  infoButton.addEventListener("click", () => {
+    infoModal.classList.add("open");
+    infoModal.setAttribute("aria-hidden", "false");
+  });
+
+  closeModal.addEventListener("click", () => {
+    infoModal.classList.remove("open");
+    infoModal.setAttribute("aria-hidden", "true");
+  });
+
+  infoModal.addEventListener("click", e => {
+    if (e.target === infoModal) {
+      infoModal.classList.remove("open");
+      infoModal.setAttribute("aria-hidden", "true");
+    }
+  });
 
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js");
